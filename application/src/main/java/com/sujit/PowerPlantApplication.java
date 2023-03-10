@@ -1,4 +1,4 @@
-package com.sujit.powerplant;
+package com.sujit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PowerPlantApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PowerPlantApplication.class, args);
-    }
-
+  public static void main(String[] args) {
+    SpringApplication.run(PowerPlantApplication.class, args);
+  }
 }
