@@ -1,6 +1,7 @@
 package com.sujit.entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import lombok.Data;
@@ -18,5 +19,9 @@ public class BatteryEntity implements Serializable {
 
   private Integer postCode;
 
-  private String wattCapacity;
+  private Double wattCapacity;
+
+  private LocalDateTime createdDate;
+
+  private LocalDateTime lastModifiedDate;
 }

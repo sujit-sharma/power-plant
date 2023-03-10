@@ -2,7 +2,6 @@ package com.sujit.controller;
 
 import com.sujit.dto.BatteryDto;
 import com.sujit.mappper.DtoResourceMapper;
-import com.sujit.resource.BatteriesSummaryRequest;
 import com.sujit.resource.BatterySummaryResource;
 import com.sujit.service.PowerPlantService;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class BatteryController {
   @PostMapping(
       produces = {"application/json"},
       consumes = {"application/json"})
-  public ResponseEntity<BatteriesSummaryRequest> saveBatteries(
+  public ResponseEntity<List<Object>> saveBatteries(
           @RequestBody List<BatterySummaryResource> request) {
 
 
@@ -39,29 +38,28 @@ public class BatteryController {
             request.stream().map(mapper::requestToDto)
             .collect(Collectors.toList())
     );
-    BatteriesSummaryRequest response = this.convertToSummaryResponse(savedBatteries);
+
+    List<Object> response = savedBatteries.stream().map(mapper::dtoToResource).collect(Collectors.toList());
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
-
-
-  private BatteriesSummaryRequest convertToSummaryResponse(List<BatteryDto> pageDtos) {
-    BatteriesSummaryRequest battteriesSummary = new BatteriesSummaryRequest();
-
-    List<BatterySummaryResource> summaries =
-        pageDtos.stream()
-            .map(
-                battery -> {
-                  BatterySummaryResource summaryResponse = new BatterySummaryResource();
-                  summaryResponse.setName(battery.getName());
-                  summaryResponse.setPostCode(battery.getPostCode());
-                  summaryResponse.setWattCapacity(battery.getWattCapacity());
-                  return summaryResponse;
-                })
-            .collect(Collectors.toList());
-    battteriesSummary.setBatteries(summaries);
-
-    return battteriesSummary;
-  }
+//  private BatteriesSummaryRequest convertToSummaryResponse(List<BatteryDto> pageDtos) {
+//    BatteriesSummaryRequest battteriesSummary = new BatteriesSummaryRequest();
+//
+//    List<BatterySummaryResource> summaries =
+//        pageDtos.stream()
+//            .map(
+//                battery -> {
+//                  BatterySummaryResource summaryResponse = new BatterySummaryResource();
+//                  summaryResponse.setName(battery.getName());
+//                  summaryResponse.setPostCode(battery.getPostCode());
+//                  summaryResponse.setWattCapacity(battery.getWattCapacity());
+//                  return summaryResponse;
+//                })
+//            .collect(Collectors.toList());
+//    battteriesSummary.setBatteries(summaries);
+//
+//    return battteriesSummary;
+//  }
 }

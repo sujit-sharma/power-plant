@@ -14,6 +14,6 @@
   @Mappings({@Mapping(target = "batteryId", ignore = true)})
   BatteryDto requestToDto(BatterySummaryResource request);
 
-  BatterySummaryResource dtoToRequest(BatteryDto dto);
+  BatterySummaryResource dtoToResource(BatteryDto dto);
 
  }

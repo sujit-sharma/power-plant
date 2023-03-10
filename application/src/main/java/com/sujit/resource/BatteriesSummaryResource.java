@@ -11,14 +11,18 @@ import org.springframework.data.domain.Page;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class BatteriesSummaryRequest {
+public class BatteriesSummaryResource {
 
   private Page page;
 
-  private List<BatterySummaryResource> batteries = new ArrayList<>();
+  private List<String> batteriesName = new ArrayList<>();
 
-  public boolean addBattery(Optional<BatterySummaryResource> battery) {
-    return this.batteries.add(
+  private Double totalWattCapacity;
+
+  private Double averageWattCapacity;
+
+  public boolean addBattery(Optional<String> battery) {
+    return this.batteriesName.add(
         battery.orElseThrow(() -> new NullPointerException("No battery is present to add")));
   }
 }

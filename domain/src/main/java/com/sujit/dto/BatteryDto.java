@@ -1,6 +1,8 @@
 package com.sujit.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
@@ -14,5 +16,9 @@ public class BatteryDto implements Serializable {
 
   private Integer postCode;
 
-  private String wattCapacity;
+  private Double wattCapacity;
+
+  private LocalDateTime createdDate;
+
+  private LocalDateTime lastModifiedDate;
 }
