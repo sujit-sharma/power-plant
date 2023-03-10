@@ -3,12 +3,13 @@ package com.sujit.repository;
 import com.sujit.dto.BatteryDto;
 import com.sujit.entity.BatteryEntity;
 import com.sujit.mappper.BatteryMapper;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Component
 @RequiredArgsConstructor
@@ -20,21 +21,16 @@ public class BatteryRepositoryAdaptor implements BatteryRepository {
   private final BatteryMapper mapper;
 
   @Override
-  public Page<BatteryDto> persistAll(List<BatteryDto> dtos) {
-    Page<BatteryEntity> savedEntities =
+  public List<BatteryDto> persistAll(List<BatteryDto> dtos) {
+
+    Iterable<BatteryEntity> savedEntities =
         this.dataLayerBatteryRepository.saveAll(
             dtos.stream()
-                .map(
-                    dto -> {
-                      BatteryEntity entity = new BatteryEntity();
-                      entity.setBatteryId(dto.getBatteryId());
-                      entity.setName(dto.getName());
-                      entity.setPostCode(dto.getPostCode());
-                      entity.setWattCapacity(dto.getWattCapacity());
-                      return entity;
-                    })
-                .collect(Collectors.toList()));
-
-    return null;
+                .map(batteryDto -> mapper.dtoToEntity(batteryDto))
+                .collect(Collectors.toList())
+        );
+    return StreamSupport.stream(savedEntities.spliterator(), false)
+            .map(mapper::entityToDto)
+            .collect(Collectors.toList());
   }
 }

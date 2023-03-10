@@ -11,7 +11,8 @@ public class BatteryEntity implements Serializable {
 
   private static final long serialVersionUID = -95456875L;
 
-  @Id private String batteryId;
+  @Id
+  private String batteryId;
 
   private String name;
 

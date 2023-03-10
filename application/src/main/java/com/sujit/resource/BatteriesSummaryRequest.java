@@ -6,14 +6,14 @@ import java.util.Optional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
 public class BatteriesSummaryRequest {
 
-  private Pageable page;
+  private Page page;
 
   private List<BatterySummaryResource> batteries = new ArrayList<>();
 

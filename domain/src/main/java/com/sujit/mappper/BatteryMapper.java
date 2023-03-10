@@ -10,4 +10,5 @@ public interface BatteryMapper {
   BatteryDto entityToDto(BatteryEntity entity);
 
   BatteryEntity dtoToEntity(BatteryDto dto);
+
 }

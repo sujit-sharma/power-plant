@@ -2,8 +2,6 @@
 
 
  import com.sujit.dto.BatteryDto;
- import com.sujit.entity.BatteryEntity;
- import com.sujit.resource.BatteriesSummaryRequest;
  import com.sujit.resource.BatterySummaryResource;
  import org.mapstruct.Mapper;
  import org.mapstruct.Mapping;
