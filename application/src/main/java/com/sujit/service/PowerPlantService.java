@@ -1,5 +1,6 @@
 package com.sujit.service;
 
+import com.sujit.dto.BatteriesSummaryDto;
 import com.sujit.dto.BatteryDto;
 import com.sujit.repository.BatteryRepositoryAdaptor;
 import lombok.RequiredArgsConstructor;
@@ -33,5 +34,20 @@ public class PowerPlantService {
     log.info("Batteries Saves Success!");
     return repository.persistAll(batteries);
 
+  }
+
+  public BatteriesSummaryDto findByPostCodeRange(Integer from, Integer to) {
+      List<BatteryDto> dtos = repository.findAllByPostCodeRange(from, to);
+
+      BatteriesSummaryDto batteriesSummary = new BatteriesSummaryDto();
+      batteriesSummary.setBatteriesName(dtos.stream().map(dto -> dto.getName()).collect(Collectors.toList()));
+
+      Double totalWattCapacity = dtos.stream()
+              .map(BatteryDto::getWattCapacity)
+              .reduce(0.0, (total, element) -> total + element);
+      batteriesSummary.setTotalWattCapacity(totalWattCapacity);
+      batteriesSummary.setAverageWattCapacity(totalWattCapacity/dtos.size());
+
+      return batteriesSummary;
   }
 }

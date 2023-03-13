@@ -3,6 +3,7 @@ package com.sujit.specification;
 import com.sujit.entity.BatteryEntity;
 import com.sujit.exception.DomainViolationException;
 import com.sujit.exception.Violation;
+import com.sujit.validator.QueryParamValidator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -42,9 +43,21 @@ public class BatterySpecification {
         predicates.add(predicateBiFunction);
     }
 
+    public BatterySpecification postCodeRange(Integer from, Integer to, String field) {
+        QueryParamValidator.validatePostalCodeRange(violations, from, to, field);
+        if (violations.isEmpty()) {
+            addToPredicate(
+                    (batteryEntityRoot, criteriaBuilder) -> criteriaBuilder.between(batteryEntityRoot.get(field), from, to));
+        }
+
+        return this;
+    }
+
+
     private void throwIfViolationExist() {
         if (!violations.isEmpty()) {
             throw new DomainViolationException(violations);
         }
     }
+
 }

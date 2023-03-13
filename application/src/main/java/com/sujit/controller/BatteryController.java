@@ -1,5 +1,6 @@
 package com.sujit.controller;
 
+import com.sujit.dto.BatteriesSummaryDto;
 import com.sujit.dto.BatteryDto;
 import com.sujit.mappper.DtoResourceMapper;
 import com.sujit.resource.BatteriesSummaryResource;
@@ -42,22 +43,21 @@ public class BatteryController {
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
 
-//  private BatteriesSummaryRequest convertToSummaryResponse(List<BatteryDto> pageDtos) {
-//    BatteriesSummaryRequest battteriesSummary = new BatteriesSummaryRequest();
-//
-//    List<BatterySummaryResource> summaries =
-//        pageDtos.stream()
-//            .map(
-//                battery -> {
-//                  BatterySummaryResource summaryResponse = new BatterySummaryResource();
-//                  summaryResponse.setName(battery.getName());
-//                  summaryResponse.setPostCode(battery.getPostCode());
-//                  summaryResponse.setWattCapacity(battery.getWattCapacity());
-//                  return summaryResponse;
-//                })
-//            .collect(Collectors.toList());
-//    battteriesSummary.setBatteries(summaries);
-//
-//    return battteriesSummary;
-//  }
+  @GetMapping(
+          produces = {"application/json"}
+  )
+  public ResponseEntity<BatteriesSummaryResource> findByPostalCodeRange(@RequestParam(value = "start", required = true) int start,
+  @RequestParam(value= "end", required = true) int end) {
+
+    BatteriesSummaryDto batteriesSummaryDto = service.findByPostCodeRange(start, end);
+
+    BatteriesSummaryResource resource = new BatteriesSummaryResource();
+    resource.setBatteriesName(batteriesSummaryDto.getBatteriesName());
+    resource.setAverageWattCapacity(batteriesSummaryDto.getAverageWattCapacity());
+    resource.setTotalWattCapacity(batteriesSummaryDto.getTotalWattCapacity());
+
+    return new ResponseEntity<>(resource, HttpStatus.OK);
+
+  }
+
 }

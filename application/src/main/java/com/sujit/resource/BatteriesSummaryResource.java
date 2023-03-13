@@ -1,19 +1,17 @@
 package com.sujit.resource;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.domain.Page;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
 public class BatteriesSummaryResource {
-
-  private Page page;
 
   private List<String> batteriesName = new ArrayList<>();
 

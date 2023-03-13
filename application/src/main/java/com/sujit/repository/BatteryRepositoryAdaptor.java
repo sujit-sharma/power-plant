@@ -3,8 +3,10 @@ package com.sujit.repository;
 import com.sujit.dto.BatteryDto;
 import com.sujit.entity.BatteryEntity;
 import com.sujit.mappper.BatteryMapper;
+import com.sujit.specification.BatterySpecification;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,5 +34,14 @@ public class BatteryRepositoryAdaptor implements BatteryRepository {
     return StreamSupport.stream(savedEntities.spliterator(), false)
             .map(mapper::entityToDto)
             .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BatteryDto> findAllByPostCodeRange(Integer from, Integer to) {
+    BatterySpecification queryParams = BatterySpecification.of()
+            .postCodeRange(from,to, "postCode");
+    Specification<BatteryEntity> specification = queryParams.buildSpecification();
+    List<BatteryEntity> page = dataLayerBatteryRepository.findAll(specification);
+    return page.stream().map(mapper::entityToDto).collect(Collectors.toList());
   }
 }

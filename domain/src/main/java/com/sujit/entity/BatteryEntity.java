@@ -1,10 +1,11 @@
 package com.sujit.entity;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import lombok.Data;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
