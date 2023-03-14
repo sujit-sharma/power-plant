@@ -3,6 +3,8 @@ package com.sujit.service;
 import com.sujit.dto.BatteriesSummaryDto;
 import com.sujit.dto.BatteryDto;
 import com.sujit.repository.BatteryRepositoryAdaptor;
+import com.sujit.validator.BatteryValidator;
+import com.sujit.validator.usecase.BatteryUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,7 +21,10 @@ public class PowerPlantService {
 
     private final BatteryRepositoryAdaptor repository;
 
+    private final BatteryUseCase useCase;
+
   public List<BatteryDto> saveAllBatteries(List<BatteryDto> dtoList) {
+      useCase.execute(dtoList);
     List<BatteryDto> batteries =
         dtoList.stream()
             .map(
