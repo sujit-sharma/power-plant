@@ -1,4 +1,4 @@
-package com.sujit.validator;
+package com.sujit.usecase.validation;
 
 import lombok.experimental.UtilityClass;
 

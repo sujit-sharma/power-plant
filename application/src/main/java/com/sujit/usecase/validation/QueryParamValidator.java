@@ -1,4 +1,4 @@
-package com.sujit.validator;
+package com.sujit.usecase.validation;
 
 import com.sujit.exception.SimpleViolation;
 import com.sujit.exception.Violation;

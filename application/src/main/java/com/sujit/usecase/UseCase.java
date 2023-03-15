@@ -1,4 +1,4 @@
-package com.sujit.validator.usecase;
+package com.sujit.usecase;
 
 import java.util.function.Function;
 

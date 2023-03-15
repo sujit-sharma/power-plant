@@ -1,4 +1,4 @@
-package com.sujit.validator;
+package com.sujit.usecase.validation;
 
 import com.sujit.dto.BatteryDto;
 import com.sujit.exception.SimpleViolation;
@@ -8,11 +8,10 @@ import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.sujit.validator.Constraints.*;
+import static com.sujit.usecase.validation.Constraints.*;
 
 @AllArgsConstructor
 @Component

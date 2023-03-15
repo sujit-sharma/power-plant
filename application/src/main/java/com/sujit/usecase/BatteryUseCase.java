@@ -1,13 +1,12 @@
-package com.sujit.validator.usecase;
+package com.sujit.usecase;
 
 import com.sujit.dto.BatteryDto;
 import com.sujit.exception.DomainViolationException;
 import com.sujit.exception.Violation;
-import com.sujit.validator.BatteryValidator;
+import com.sujit.usecase.validation.BatteryValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

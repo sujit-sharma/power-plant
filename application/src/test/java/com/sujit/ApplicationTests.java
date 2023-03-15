@@ -1,11 +1,11 @@
-// package com.sujit.powerplant;
-//
-// import org.junit.jupiter.api.Test;
-// import org.springframework.boot.test.context.SpringBootTest;
-//
-// @SpringBootTest
-// class ApplicationTests {
-//
-//  @Test
-//  void contextLoads() {}
-// }
+ package com.sujit;
+
+ import org.junit.jupiter.api.Test;
+ import org.springframework.boot.test.context.SpringBootTest;
+
+ @SpringBootTest
+ class ApplicationTests {
+
+  @Test
+  void contextLoads() {}
+ }

@@ -41,7 +41,7 @@ public class BatteryRepositoryAdaptor implements BatteryRepository {
     BatterySpecification queryParams = BatterySpecification.of()
             .postCodeRange(from,to, "postCode");
     Specification<BatteryEntity> specification = queryParams.buildSpecification();
-    List<BatteryEntity> page = dataLayerBatteryRepository.findAll(specification);
-    return page.stream().map(mapper::entityToDto).collect(Collectors.toList());
+    List<BatteryEntity> entities = dataLayerBatteryRepository.findAll(specification);
+    return entities.stream().map(mapper::entityToDto).collect(Collectors.toList());
   }
 }
