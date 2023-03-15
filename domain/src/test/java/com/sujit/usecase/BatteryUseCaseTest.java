@@ -5,23 +5,17 @@ import com.sujit.exception.DomainViolationException;
 import com.sujit.exception.SimpleViolation;
 import com.sujit.exception.Violation;
 import com.sujit.usecase.validation.BatteryValidator;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Answers;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import javax.persistence.SecondaryTable;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -42,10 +36,10 @@ class BatteryUseCaseTest {
 
         violations.add(new SimpleViolation("key", "message"));
 
-        when(validator.validate(any(BatteryDto.class))).thenReturn(violations);
+        when(validator.validate(ArgumentMatchers.any(BatteryDto.class))).thenReturn(violations);
 
-        assertThrows(DomainViolationException.class, () -> useCase.execute(dtos));
-        verify(validator).validate(eq(dtos.get(0)));
+        Assertions.assertThrows(DomainViolationException.class, () -> useCase.execute(dtos));
+        verify(validator).validate(ArgumentMatchers.eq(dtos.get(0)));
 
     }
 
@@ -56,10 +50,10 @@ class BatteryUseCaseTest {
         dtoList.add(new BatteryDto());
 
 
-        when(validator.validate(any(BatteryDto.class))).thenReturn(new HashSet<>());
+        when(validator.validate(ArgumentMatchers.any(BatteryDto.class))).thenReturn(new HashSet<>());
 
         useCase.execute(dtoList);
 
-        verify(validator, times(2)).validate(any(BatteryDto.class));
+        verify(validator, times(2)).validate(ArgumentMatchers.any(BatteryDto.class));
     }
 }

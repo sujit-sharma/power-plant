@@ -1,9 +1,9 @@
 package com.sujit.usecase.validation;
 
 import com.sujit.dto.BatteryDto;
+
 import com.sujit.exception.SimpleViolation;
 import com.sujit.exception.Violation;
-import lombok.AllArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,6 @@ import java.util.Set;
 
 import static com.sujit.usecase.validation.Constraints.*;
 
-@AllArgsConstructor
 @Component
 public class BatteryValidator implements PowerPlantValidator<BatteryDto> {
 
