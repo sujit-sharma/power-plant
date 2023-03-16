@@ -29,7 +29,7 @@ public class BatteryController {
   @PostMapping(
       produces = {"application/json"},
       consumes = {"application/json"})
-  public ResponseEntity<List<Object>> saveBatteries(
+  public ResponseEntity<List<BatterySummaryResource>> saveBatteries(
           @RequestBody List<BatterySummaryResource> request) {
 
 
@@ -38,7 +38,7 @@ public class BatteryController {
             .collect(Collectors.toList())
     );
 
-    List<Object> response = savedBatteries.stream().map(mapper::dtoToResource).collect(Collectors.toList());
+    List<BatterySummaryResource> response = savedBatteries.stream().map(mapper::dtoToResource).collect(Collectors.toList());
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
