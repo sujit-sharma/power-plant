@@ -32,7 +32,6 @@ public class BatteryController {
   public ResponseEntity<List<BatterySummaryResource>> saveBatteries(
           @RequestBody List<BatterySummaryResource> request) {
 
-
     List<BatteryDto> savedBatteries = service.saveAllBatteries(
             request.stream().map(mapper::requestToDto)
             .collect(Collectors.toList())
@@ -42,7 +41,6 @@ public class BatteryController {
 
     return new ResponseEntity<>(response, HttpStatus.OK);
   }
-
   @GetMapping(
           produces = {"application/json"}
   )
@@ -57,7 +55,6 @@ public class BatteryController {
     resource.setTotalWattCapacity(batteriesSummaryDto.getTotalWattCapacity());
 
     return new ResponseEntity<>(resource, HttpStatus.OK);
-
   }
 
 }

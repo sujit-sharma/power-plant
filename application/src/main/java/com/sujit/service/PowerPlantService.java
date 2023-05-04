@@ -21,7 +21,6 @@ public class PowerPlantService {
     private final BatteryRepositoryAdaptor repository;
 
     private final BatteryUseCase useCase;
-
   public List<BatteryDto> saveAllBatteries(List<BatteryDto> dtoList) {
       useCase.execute(dtoList);
     List<BatteryDto> batteries =

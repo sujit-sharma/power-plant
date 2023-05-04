@@ -18,7 +18,6 @@ public class BatteriesSummaryResource {
   private Double totalWattCapacity;
 
   private Double averageWattCapacity;
-
   public boolean addBattery(Optional<String> battery) {
     return this.batteriesName.add(
         battery.orElseThrow(() -> new NullPointerException("No battery is present to add")));
